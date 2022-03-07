@@ -9,6 +9,7 @@ import telethon
 
 API_ID = 1641545
 API_HASH ="5e2f76a9ef8d04cb1386a9f9d246dd9f"
+# prendete tutti i codici da my.telegram.org
 
 userbot_personal = TelegramClient("userbot_personal", API_ID, API_HASH)
 
@@ -20,7 +21,7 @@ async def usbot():
   
   @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.stato"))
   async def statususerbot(event):
-    await event.edit("userbot personale online")
+    await event.edit("UserBot online✅")
 
   @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.nome"))
   async def nameprofilyou(event):
@@ -32,7 +33,7 @@ async def usbot():
 
   @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.ferma"))
   async def _stopuserbot(event):
-    await event.edit("fra 3 secondi andra offline l'userbot")
+    await event.edit("Fra 3 secondi andra offline l'userbot")
     await userbot_personal.disconnect()
     await asyncio.sleep(3)
 
