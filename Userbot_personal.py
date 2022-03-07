@@ -1,6 +1,5 @@
 from telethon import TelegramClient, events, sync
-from telethon import Button
-from telethon import functions, types
+from telethon import *
 from datetime import datetime
 
 import os
@@ -19,26 +18,26 @@ userbot_personal = TelegramClient("userbot_personal", API_ID, API_HASH)
 async def usbot():
 
   
-  @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.status"))
+  @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.stato"))
   async def statususerbot(event):
-    await event.edit("userbot personal online")
+    await event.edit("userbot personale online")
 
-  @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.name"))
+  @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.nome"))
   async def nameprofilyou(event):
     x = event.text.split(" ", maxsplit=1)[1]
     result = await userbot_personal(functions.account.UpdateProfileRequest(
           first_name=x,
       ))
-    await event.edit(f"name put as **{x}**")
+    await event.edit(f"nome messo in **{x}**")
 
-  @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.stopuserbot"))
+  @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.ferma"))
   async def _stopuserbot(event):
     await event.edit("fra 3 secondi andra offline l'userbot")
     await userbot_personal.disconnect()
     await asyncio.sleep(3)
 
 
-  @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.reboot"))
+  @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.riavvia"))
   async def reboot(event):
     await event.delete()
     import os, sys, threading
@@ -53,14 +52,14 @@ async def usbot():
     if event.fwd_from:
         return
     start = datetime.now()
-    await event.edit("**Pong!**")
+    await event.edit("**Ping!**")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
-    await event.edit("**Pong!**\n`{}`".format(ms))
+    await event.edit("**Ping!**\n`{}`".format(ms))
 
   @userbot_personal.on(events.NewMessage(outgoing=True))
   async def t_p(event):
-    if event.text == ".d":
+    if event.text == ".lol":
       await event.edit("Non è divertente. Non ho riso. Il tuo tentativo di fare il comico è stato talmente pietoso da rendermi ancora più triste e frustrato di prima. La tua idea di scherzo è completamente fallata, le tue battute sono delle offese a livello intellettuale nei confronti di tutti i comici che a differenza tua sanno far ridere la gente. Io mi immagino te, dietro la tastiera, con un sorriso malizioso sulle labbra, pronto a scrivere questa battuta mediocre che non mi ha fatto nemmeno sorridere. Dovresti seriamente smettere di provare a far ridere la gente, perché non fa per te, non ne sei capace, non sei divertente, non sei simp, e le tue battute sono deprimenti e non fanno ridere")
 
 
@@ -75,7 +74,7 @@ async def usbot():
     await event.delete()
     d = await event.get_reply_message()
     await d.delete()
-    await event.respond("deleted message")
+    await event.respond("Messaggio Cancellato")
 
   @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.del"))
   async def _delm(event):
@@ -86,11 +85,11 @@ async def usbot():
   @userbot_personal.on(events.NewMessage(outgoing=True, pattern=r"\.version_telethon"))
   async def versiontelethon(e):
     g = (telethon.__version__)
-    await e.edit(f"version telethon -> {g}")
+    await e.edit(f"versione di telethon -> {g}")
 
 
   
-print("Userbot Personal Online!")
+print("Userbot Personale Online!")
 
 
 with userbot_personal:
